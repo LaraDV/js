@@ -12,17 +12,31 @@
         <div class="logo">Интернет-магазин</div>
         <div class="cart">
             <form action="#" class="search-form">
-                <input type="text" class="search-field">
-                <button class="btn-search" type="submit">
+                <input type="text" class="search-field" v-model="searchLine">
+                <button class="btn-search" type="submit" @click="filterGoods">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart" type="button">Корзина</button>
+            <button class="btn-cart" type="button"  @click="isVisibleCart = !isVisibleCart">Корзина</button>
+            <div class="cart-block" v-show="isVisibleCart">
+                <div class="cart-item" :name = "product.id_product"  v-for="product of cartProducts" :key="product.id_product">
+                    <div class="cartLeft">
+                        <img :src="imgCatalog" alt="Some img">
+                        <h3>{{product.product_name}}</h3>
+                    </div>
+                    <div class="cartRight">
+                        <p>{{product.price}}₽</p>
+                        <p>Количество: {{product.quantity}}</p>
+                        <button class="del-btn" @click="delProduct(product)">x</button>
+                        <p>Сумма: {{product.quantity*product.price}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     <main>
         <div class="products">
-            <div class="product-item" v-for="product of products" :key="product.id_product">
+            <div class="product-item" :id = "product.id_product"  v-for="product of products" :key="product.id_product">
                 <img :src="imgCatalog" alt="Some img">
                 <div class="desc">
                     <h3>{{product.product_name}}</h3>
