@@ -5,6 +5,8 @@ class ProductList {
     this.allProducts = [];
     this._fetchProducts();
     this._render();
+    this.summ = 0;
+    this._getTotalValue();
   }
 
   _fetchProducts() {
@@ -24,6 +26,13 @@ class ProductList {
       this.allProducts.push(productObject);
       block.insertAdjacentHTML('beforeend', productObject.render());
     }
+  }
+  _getTotalValue() {
+    const block = document.querySelector(this.container);
+    for (let value of this.allProducts){
+      this.summ += value.price; 
+    }
+    block.insertAdjacentHTML('afterend',`<div class = "productsTValue">Общая стоимость товаров составляет ${this.summ} ₽ </div>` );
   }
 }
 
@@ -45,6 +54,20 @@ class ProductItem {
                 </div>
             </div>`;
   }
+}
+
+class Cart {
+  /* класс Корзины будет изначально иметь пустой массив для добавления товаров. 
+  Будет иметь методы:
+  1. Для добавления товара (добавления его разметки, созданной в классе элемента товара)
+  2. Для удаления товара
+  3. Для подсчета итоговой стоимости
+  4. Для очистки корзины
+  */
+}
+class CartProducts {
+  /* "Элементы будет иметь свойства для id, картинки, названия, цены.
+  Будет иметь метод генерирования разметки Товара. В разметке также будет кнопка удалить и кнопка очистить корзину*/
 }
 new ProductList();
 // const products = [

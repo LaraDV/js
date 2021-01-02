@@ -41,6 +41,12 @@ button{
     padding: 40px 80px;
     justify-content: space-between;
 }
+.productsTValue {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    background-color: #2f2a2d;
+}
 p {
     margin: 0 0 5px 0;
 }
